@@ -1,15 +1,19 @@
 const app = require('express')();
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 app.use(cors());
+
+
+app.use(bodyParser.json());
+
+app.use('/users', require('./users/user.router'));
+app.use('/businesses', require('./businesses/business.router'));
+app.use('/appointments', require('./appointments/appointment.router'));
 
 app.use('/', (req, res, next) => {
     console.log('here');
     res.send('here2');
 });
-
-app.use('/users', authenticationMiddleware, require('./users/user.router'));
-app.use('/businesses', authenticationMiddleware, require('./businesses/businesses.router'));
-app.use('/appointments', authenticationMiddleware, require('./appointments/appoinments.router'));
 
 module.exports = app;

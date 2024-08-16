@@ -13,7 +13,7 @@ class GenericService {
         return this.model.find();
     }
 
-    create(body, auth) {
+    async create(body, auth) {
         return this.model.create(body);
     }
 
